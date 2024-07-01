@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Game
 {
@@ -8,13 +9,21 @@ namespace Game
     {
         [SerializeField]private Transform midPoint;
         [SerializeField]private Transform endPoint;
-        [SerializeField]private GameObject[] audiencePersonPrefab;
+        [SerializeField]private AudiencePerson[] audiencePersonPrefab;
         [SerializeField]private int segments = 10;
         [Range(0.0f,1.0f)]
         [SerializeField]private float spawnThreshold = 0.8f;
         
+        private List<AudiencePerson> _audiencePersons;
+        private int _audienceCount = 0;
 
+        public List<AudiencePerson> AudiencePersons { get => _audiencePersons; }
 
+        public int AudienceCount { get => _audienceCount; }
+
+        private void Awake() {
+            _audiencePersons = new List<AudiencePerson>();
+        }
         // Start is called before the first frame update
         void Start()
         {
@@ -44,10 +53,11 @@ namespace Game
                 t += delta;
                 
                 var audiencePerson = Instantiate(audiencePersonPrefab[Random.Range(0, audiencePersonPrefab.Length)], bezierPoint, Quaternion.identity);
-                
                 Vector3 direction = (bezierPoint - previousBezierPoint).normalized;
                 audiencePerson.transform.right = -direction;
                 audiencePerson.transform.parent = transform;
+                _audiencePersons.Add(audiencePerson);
+                _audienceCount++;
                 previousBezierPoint = bezierPoint;
             }
 
@@ -55,6 +65,8 @@ namespace Game
                 
             Vector3 lastDirection = (p2- bezierPoint).normalized;
             lastAudiencePerson.transform.right = -lastDirection;
+            _audiencePersons.Add(lastAudiencePerson);
+            _audienceCount++;
             lastAudiencePerson.transform.parent = transform;
 
         }
