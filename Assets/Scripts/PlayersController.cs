@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +14,8 @@ namespace Game
         [SerializeField]private Button[] playerButtons;
         [SerializeField]private Transform[] playerDestinations;
         [SerializeField]private Transform[] middlePoints;
+        [SerializeField]private CameraSwitcher cameraSwitcher;
+        [SerializeField]private CinemachineVirtualCameraBase focusCamera;
 
         private List<Player> _players;
         
@@ -20,6 +23,7 @@ namespace Game
         {
             button.onClick.AddListener(()=> {
                 player.SetDestination(destination.position, destination, middlePoint);
+                cameraSwitcher.Focus(focusCamera, player.transform);
             });
         }
         private void SpawnPlayers()

@@ -40,6 +40,12 @@ namespace Game
             ChangeToCamera(cameras[_currentIndex]);
         }
 
+        public void Focus(CinemachineVirtualCameraBase camera, Transform target)
+        {
+            ChangeToCamera(camera);
+            camera.LookAt = target;
+        }
+
         private void ChangeToCamera(CinemachineVirtualCameraBase camera)
         {
             for(int i = 0 ; i < cameras.Length; i++)
@@ -50,5 +56,6 @@ namespace Game
             camera.m_Priority = MaxPriority;
             cameraNameIndicator.text = camera.name;
         }
+
     }
 }

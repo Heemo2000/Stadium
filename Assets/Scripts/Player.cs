@@ -10,7 +10,7 @@ namespace Game
     {
         [Min(0.1f)]
         [SerializeField]private float closestDistance = 0.5f;
-        [SerializeField]private Animation dancingAnimation;
+        [SerializeField]private AnimationClip dancingAnimation;
         [SerializeField]private Transform middlePoint;
         private NavMeshAgent _agent;
         private Animator _animator;
@@ -44,16 +44,26 @@ namespace Game
             _agent.isStopped = false;
             yield return new WaitUntil(()=> Vector3.SqrMagnitude(middlePoint.position - transform.position) <= closestDistance * closestDistance);
             
+            Debug.Log("Player is stopped");
             _agent.isStopped = true;
+            //_animator.SetBool(_isWalkingID, false);
             _animator.SetFloat(_moveInputID, 0.0f);
             _animator.SetBool(_isDancingID, true);
 
-            yield return new WaitUntil(()=> _animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f);
+            float delta = 0.0f;
+            while(delta < dancingAnimation.length)
+            {
+                delta += Time.deltaTime;
+                yield return null;
+            }
+
             _animator.SetBool(_isDancingID, false);
             _animator.SetFloat(_moveInputID, 1.0f);
             _animator.SetBool(_isWalkingID, true);
             _agent.SetDestination(_destination);
             _agent.isStopped = false;
+
+            Debug.Log("Player is moving again.");
 
             yield return new WaitUntil(()=> Vector3.SqrMagnitude(_destination - transform.position) <= closestDistance * closestDistance);
 
