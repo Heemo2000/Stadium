@@ -43,6 +43,7 @@ namespace Game
         public void Focus(CinemachineVirtualCameraBase camera, Transform target)
         {
             ChangeToCamera(camera);
+            camera.Follow = target;
             camera.LookAt = target;
         }
 

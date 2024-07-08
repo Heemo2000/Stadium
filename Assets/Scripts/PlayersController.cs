@@ -15,7 +15,7 @@ namespace Game
         [SerializeField]private Transform[] playerDestinations;
         [SerializeField]private Transform[] middlePoints;
         [SerializeField]private CameraSwitcher cameraSwitcher;
-        [SerializeField]private CinemachineVirtualCameraBase focusCamera;
+        [SerializeField]private CinemachineVirtualCameraBase[] focusCameras;
 
         private List<Player> _players;
         
@@ -23,6 +23,7 @@ namespace Game
         {
             button.onClick.AddListener(()=> {
                 player.SetDestination(destination.position, destination, middlePoint);
+                var focusCamera = GetClosestDollyCamera(player.transform.position);
                 cameraSwitcher.Focus(focusCamera, player.transform);
             });
         }
@@ -36,6 +37,24 @@ namespace Game
                 InitializePlayer(player, playerButtons[i], playerDestinations[i], middlePoints[i]);
                 i++;
             }
+        }
+
+        private CinemachineVirtualCameraBase GetClosestDollyCamera(Vector3 position)
+        {
+            float closestSqrDistance = float.MaxValue;
+            CinemachineVirtualCameraBase dollyCamera = null;
+
+            for(int i = 0; i < focusCameras.Length; i++)
+            {
+                float sqrDistance = Vector3.SqrMagnitude(focusCameras[i].transform.position - position);
+                if(sqrDistance < closestSqrDistance)
+                {
+                    dollyCamera = focusCameras[i];
+                    closestSqrDistance = sqrDistance;
+                }
+            }
+
+            return dollyCamera;
         }
 
         private void Awake() {
