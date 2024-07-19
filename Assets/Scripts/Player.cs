@@ -20,9 +20,11 @@ namespace Game
 
         private int _isDancingID;
         private Transform _pivot;
-        //private bool _isSitting = false;
+        private bool _isSitting = false;
         
         private Coroutine _destCoroutine;
+
+        public bool IsSitting { get => _isSitting; }
 
         public void SetDestination(Vector3 position, Transform pivot, Transform middlePoint)
         {
@@ -73,6 +75,8 @@ namespace Game
             transform.parent = _pivot;
             transform.localPosition = Vector3.zero;
             transform.forward = _pivot.forward;
+
+            _isSitting = true;
         }
         private void Awake() {
             _agent = GetComponent<NavMeshAgent>();

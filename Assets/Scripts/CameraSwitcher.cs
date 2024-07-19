@@ -47,7 +47,7 @@ namespace Game
             camera.LookAt = target;
         }
 
-        private void ChangeToCamera(CinemachineVirtualCameraBase camera)
+        public void ChangeToCamera(CinemachineVirtualCameraBase camera)
         {
             for(int i = 0 ; i < cameras.Length; i++)
             {

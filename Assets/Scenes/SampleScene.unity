@@ -275,7 +275,7 @@ MonoBehaviour:
   - {fileID: 1206579991}
   - {fileID: 1550770135}
   cameraSwitcher: {fileID: 1380894657}
-  focusCamera: {fileID: 699364931}
+  focusCameras: []
 --- !u!4 &21128424
 Transform:
   m_ObjectHideFlags: 0
@@ -5296,8 +5296,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.05026567, y: -0.108901694, z: -0.0097563295, w: 0.9927329}
-  m_LocalPosition: {x: -3.15, y: 5.5, z: 9.6}
+  m_LocalRotation: {x: 0, y: -0.78836995, z: 0, w: 0.6152015}
+  m_LocalPosition: {x: -9.63, y: 5.65, z: -2.79}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5762,6 +5762,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45331983c7c6c744ab3d60aaff4dd94c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showUIControls: 1
+  uiControls:
+  - {fileID: 1122735914}
+  - {fileID: 398782941}
+  - {fileID: 769447869}
+  - {fileID: 1268240712}
+  - {fileID: 1766268308}
+  - {fileID: 1068157495}
+  - {fileID: 638213026}
+  - {fileID: 972371637}
+  - {fileID: 179464092}
+  - {fileID: 108619029}
+  - {fileID: 28365951}
 --- !u!4 &1065392195
 Transform:
   m_ObjectHideFlags: 0

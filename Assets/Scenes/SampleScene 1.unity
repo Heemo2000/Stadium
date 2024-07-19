@@ -861,7 +861,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Path: {fileID: 2138127866}
-  m_PathPosition: 2.95033
+  m_PathPosition: 3.699767
   m_PositionUnits: 0
   m_PathOffset: {x: 0, y: 0, z: 0}
   m_XDamping: 0
@@ -2257,7 +2257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Path: {fileID: 520234034}
-  m_PathPosition: 3.192902
+  m_PathPosition: 3.192683
   m_PositionUnits: 0
   m_PathOffset: {x: 0, y: 0, z: 0}
   m_XDamping: 0
@@ -5188,7 +5188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Path: {fileID: 500125594}
-  m_PathPosition: 3.040987
+  m_PathPosition: 3.456558
   m_PositionUnits: 0
   m_PathOffset: {x: 0, y: 0, z: 0}
   m_XDamping: 0
@@ -6570,8 +6570,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.4332436, y: -0.5632996, z: 0.45421508, w: 0.53729165}
-  m_LocalPosition: {x: 5.017349, y: 5.6511517, z: -1.7563303}
+  m_LocalRotation: {x: 0.05026567, y: -0.108901694, z: -0.0097563295, w: 0.9927329}
+  m_LocalPosition: {x: -3.15, y: 5.5, z: 9.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7397,6 +7397,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45331983c7c6c744ab3d60aaff4dd94c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showUIControls: 1
+  uiControls:
+  - {fileID: 1122735914}
+  - {fileID: 398782941}
+  - {fileID: 769447869}
+  - {fileID: 1268240712}
+  - {fileID: 1068157495}
+  - {fileID: 1766268308}
+  - {fileID: 638213026}
+  - {fileID: 972371637}
+  - {fileID: 179464092}
+  - {fileID: 108619029}
+  - {fileID: 28365951}
+  - {fileID: 940317467}
+  - {fileID: 278811935}
+  - {fileID: 977313304}
+  - {fileID: 1075983989}
 --- !u!4 &1065392195
 Transform:
   m_ObjectHideFlags: 0

@@ -146,6 +146,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4a76fb5e8d76b040a6c62c9df327f21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  closestDistance: 0.8
+  closestDistance: 0.5
   dancingAnimation: {fileID: 7400000, guid: 185f0ca2e2aad554eae537f26dbeb5f2, type: 2}
   middlePoint: {fileID: 0}
