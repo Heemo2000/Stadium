@@ -11,7 +11,6 @@ namespace Game
         [SerializeField]private Player[] playerPrefabs;
         [SerializeField]private Transform[] playerDestinations;
         [SerializeField]private Transform[] middlePoints;
-        [SerializeField]private CameraSwitcher cameraSwitcher;
         [SerializeField]private CinemachineVirtualCameraBase[] focusCameras;
         [SerializeField]private CinemachineVirtualCameraBase topCamera;
 
@@ -63,7 +62,7 @@ namespace Game
             
             player.SetDestination(destination.position, destination, middlePoint);
             var focusCamera = GetClosestDollyCamera(player.transform.position);
-            cameraSwitcher.Focus(focusCamera, player.transform);
+            CameraSwitcher.Instance.Focus(focusCamera, player.transform);
         }
 
         private IEnumerator MakePlayersSit()
@@ -78,14 +77,14 @@ namespace Game
 
                 player.SetDestination(destination.position, destination, middlePoint);
                 var focusCamera = GetClosestDollyCamera(player.transform.position);
-                cameraSwitcher.Focus(focusCamera, player.transform);
+                CameraSwitcher.Instance.Focus(focusCamera, player.transform);
 
                 yield return new WaitUntil(()=> player.IsSitting == true);
                 yield return wait;
             }
 
             yield return wait;
-            cameraSwitcher.ChangeToCamera(topCamera);
+            CameraSwitcher.Instance.ChangeToCamera(topCamera);
             _areAllSitting = true;
         }
 

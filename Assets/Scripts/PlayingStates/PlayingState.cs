@@ -16,6 +16,7 @@ namespace Game
         {
             Debug.Log("Now in playing state");
             _gameManager.SetPlayerScoresActiveStatus(true);
+            _gameManager.GenerateFoodInitially();
         }
 
         public void OnExit()

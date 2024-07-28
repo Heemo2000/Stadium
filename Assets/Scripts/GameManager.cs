@@ -5,11 +5,14 @@ namespace Game
 {
     public class GameManager : MonoBehaviour
     {
-        [SerializeField]private bool showUIControls = true;
-        [SerializeField]private GameObject[] uiControls;
+        [SerializeField]private bool showDebugCanvas = true;
+        [SerializeField]private Canvas debugCanvas;
         [SerializeField]private PlayersSitter playersSitter;
         [SerializeField]private DollyTrackFollower stadiumDollyTrackFollower;
-        [SerializeField]private PlayerScore[] playerScores;
+        
+        [SerializeField]private UIManager uiManager;
+        [SerializeField]private Canvas playCanvas;
+        [SerializeField]private FoodRow[] foodRows;
 
         private StateMachine _gameSM;
         private PlayersSittingState _playersSittingState;
@@ -19,13 +22,21 @@ namespace Game
         public PlayersSitter PlayersSitter { get => playersSitter;  }
         public DollyTrackFollower StadiumDollyTrackFollower { get => stadiumDollyTrackFollower; }
 
-        public void SetPlayerScoresActiveStatus(bool status)
+
+        public void GenerateFoodInitially()
         {
-            foreach(var playerScore in playerScores)
+            for(int i = 0; i < foodRows.Length; i++)
             {
-                playerScore.gameObject.SetActive(status);
+                Debug.Log("Generating food...");
+                StartCoroutine(foodRows[i].AddFoodInitially());
             }
         }
+
+        public void SetPlayerScoresActiveStatus(bool status)
+        {
+            uiManager.Open(playCanvas);
+        }
+
 
         private void Awake() {
             _gameSM = new StateMachine();
@@ -57,9 +68,13 @@ namespace Game
 
         private void OnValidate() 
         {
-            foreach(GameObject uiControl in uiControls)
+            if(showDebugCanvas)
             {
-                uiControl.SetActive(showUIControls);
+                uiManager.Open(debugCanvas);
+            }
+            else
+            {
+                uiManager.CloseLastCanvas();
             }
         }
     }

@@ -10,7 +10,6 @@ namespace Game
         [SerializeField]private CinemachineSmoothPath smoothPath;
 
         [SerializeField]private float moveSpeed = 10.0f;
-        [SerializeField]private CameraSwitcher cameraSwitcher;
 
         private CinemachineVirtualCamera _dollyCamera;
         private Coroutine _followCoroutine;
@@ -29,7 +28,7 @@ namespace Game
         private IEnumerator FollowTrack()
         {
             yield return new WaitForSeconds(0.1f);
-            cameraSwitcher.ChangeToCamera(_dollyCamera);
+            CameraSwitcher.Instance.ChangeToCamera(_dollyCamera);
 
             _dollyCamera.Follow = _followGO.transform;
             _dollyCamera.LookAt = _followGO.transform;
@@ -45,7 +44,7 @@ namespace Game
                 _followGO.transform.right = direction;                
                 delta += moveSpeed * Time.deltaTime;
 
-                Debug.Log("Delta: " + delta);
+                //Debug.Log("Delta: " + delta);
                 previousPosition = newPosition;
                 yield return null;
             }

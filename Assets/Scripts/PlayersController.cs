@@ -14,7 +14,7 @@ namespace Game
         [SerializeField]private Button[] playerButtons;
         [SerializeField]private Transform[] playerDestinations;
         [SerializeField]private Transform[] middlePoints;
-        [SerializeField]private CameraSwitcher cameraSwitcher;
+        
         [SerializeField]private CinemachineVirtualCameraBase[] focusCameras;
 
         private List<Player> _players;
@@ -24,7 +24,7 @@ namespace Game
             button.onClick.AddListener(()=> {
                 player.SetDestination(destination.position, destination, middlePoint);
                 var focusCamera = GetClosestDollyCamera(player.transform.position);
-                cameraSwitcher.Focus(focusCamera, player.transform);
+                CameraSwitcher.Instance.Focus(focusCamera, player.transform);
             });
         }
         private void SpawnPlayers()

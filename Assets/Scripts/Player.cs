@@ -1,8 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
+using Cinemachine;
 
 namespace Game
 {
@@ -12,6 +11,10 @@ namespace Game
         [SerializeField]private float closestDistance = 0.5f;
         [SerializeField]private AnimationClip dancingAnimation;
         [SerializeField]private Transform middlePoint;
+        [SerializeField]private CinemachineVirtualCamera leftCamera;
+        [SerializeField]private CinemachineVirtualCamera centreCamera;
+        [SerializeField]private CinemachineVirtualCamera rightCamera;
+
         private NavMeshAgent _agent;
         private Animator _animator;
         private Vector3 _destination;
@@ -26,6 +29,21 @@ namespace Game
 
         public bool IsSitting { get => _isSitting; }
 
+        public CinemachineVirtualCamera GetLeftCamera()
+        {
+            return leftCamera;
+        }
+
+        public CinemachineVirtualCamera GetCentreCamera()
+        {
+            return centreCamera;
+        }
+
+        public CinemachineVirtualCamera GetRightCamera()
+        {
+            return rightCamera;
+        }
+        
         public void SetDestination(Vector3 position, Transform pivot, Transform middlePoint)
         {
             _destination = position;
