@@ -19,6 +19,7 @@ namespace Game
         private Coroutine _sittingCoroutine;
 
         public bool AreAllSitting { get => _areAllSitting; }
+        public List<Player> Players { get => _players; }
 
         public void MakeAllPlayersSit()
         {

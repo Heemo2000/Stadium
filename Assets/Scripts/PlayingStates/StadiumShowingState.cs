@@ -14,7 +14,7 @@ namespace Game
         public void OnEnter()
         {
             _gameManager.StadiumDollyTrackFollower.FollowDollyTrack();
-            _gameManager.SetPlayerScoresActiveStatus(false);
+            _gameManager.PopAllPages();
         }
 
         public void OnExit()
