@@ -1,0 +1,70 @@
+using System.Collections;
+using System.Collections.Generic;
+using Cinemachine;
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace Game
+{
+    
+    public class PlayersController : MonoBehaviour
+    {
+        [SerializeField]private Transform[] tunnelSpawnPoints;
+        [SerializeField]private Player[] playerPrefabs;
+        [SerializeField]private Button[] playerButtons;
+        [SerializeField]private Transform[] playerDestinations;
+        [SerializeField]private Transform[] middlePoints;
+        
+        [SerializeField]private CinemachineVirtualCameraBase[] focusCameras;
+
+        private List<Player> _players;
+        
+        private void InitializePlayer(Player player, Button button, Transform destination, Transform middlePoint)
+        {
+            button.onClick.AddListener(()=> {
+                player.SetDestination(destination.position, destination, middlePoint);
+                var focusCamera = GetClosestDollyCamera(player.transform.position);
+                CameraSwitcher.Instance.Focus(focusCamera, player.transform);
+            });
+        }
+        private void SpawnPlayers()
+        {
+            int i = 0;
+            foreach(Transform spawnPoint in tunnelSpawnPoints)
+            {
+                var player = Instantiate(playerPrefabs[Random.Range(0, playerPrefabs.Length)], spawnPoint.position, Quaternion.identity);
+                _players.Add(player);
+                InitializePlayer(player, playerButtons[i], playerDestinations[i], middlePoints[i]);
+                i++;
+            }
+        }
+
+        private CinemachineVirtualCameraBase GetClosestDollyCamera(Vector3 position)
+        {
+            float closestSqrDistance = float.MaxValue;
+            CinemachineVirtualCameraBase dollyCamera = null;
+
+            for(int i = 0; i < focusCameras.Length; i++)
+            {
+                float sqrDistance = Vector3.SqrMagnitude(focusCameras[i].transform.position - position);
+                if(sqrDistance < closestSqrDistance)
+                {
+                    dollyCamera = focusCameras[i];
+                    closestSqrDistance = sqrDistance;
+                }
+            }
+
+            return dollyCamera;
+        }
+
+        private void Awake() {
+            _players = new List<Player>();
+        }
+
+        // Start is called before the first frame update
+        void Start()
+        {
+            SpawnPlayers();
+        }
+    }
+}
